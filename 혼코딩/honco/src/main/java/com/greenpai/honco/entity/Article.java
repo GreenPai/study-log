@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @AllArgsConstructor
+@NoArgsConstructor
 @ToString
 @Entity
 public class Article {
@@ -28,11 +29,6 @@ public class Article {
         this.content = content;
     }
     */
-
-    public Article() {
-
-    }
-
 
     /*
     @Override

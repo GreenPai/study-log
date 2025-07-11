@@ -7,8 +7,12 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import java.util.List;
 
 @Slf4j
 @Controller
@@ -37,5 +41,17 @@ public class ArticleController {
 
 
         return "articles/new";
+    }
+
+    @GetMapping("/articles/{id}")
+    public String articles(@PathVariable Integer id, Model model){
+
+        Article articleEntity = articleRepository.findById(id).orElse(null);
+        List<Article> articleList = articleRepository.findAll();
+        log.info("id =  " + id);
+
+        model.addAttribute("article", articleEntity);
+
+        return "articles/show";
     }
 }
